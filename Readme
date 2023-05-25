@@ -1,0 +1,196 @@
+Solution to Backend Assignment
+This is a user management application with a backend REST API that allows you to store and manage user information, including their addresses.
+
+Technologies Used
+Backend API: Node.js (Express framework)
+Database: MongoDB (NoSQL database)
+
+Prerequisites
+Before getting started, ensure that you have the following installed on your system:
+
+Node.js (version 14.x or higher)
+MongoDB (Community Edition)
+
+Getting Started
+Follow the steps below to set up and run the application:
+
+1.Clone the repository:
+git clone <repository-url>
+
+2.Navigate to the project directory:
+
+3.Install the dependencies:
+npm install
+
+4.Configure the environment variables:
+Open the .env file and add your desired URI & PORT
+
+PORT=5000
+MONGODB_URI=<your-mongodb-uri>
+
+5.Set up the MongoDB database:
+Make sure MongoDB is running on your system.
+Create a new MongoDB database.
+
+6.Start the server:
+npm start
+
+7.Open your web browser and visit http://localhost:5000 to access the Backend
+
+**\*\***\*\*************\************* 1.SOLUTION TO THE FIRST TASK **\*\*\*\***\*************\*\*************
+API Endpoints
+Endpoint: POST request to => http://localhost:5000/user/signup
+Description: Creates a new user with the provided information.
+Request Body:
+firstName (string, required): First name of the user.
+lastName (string, required): Last name of the user.
+email (string, required): Email of the user (unique and valid format).
+mobileNumber (string, required): Mobile number of the user (unique and valid 10-digit number).
+birthdate (string, optional): Birthdate of the user (in YYYY-MM-DD format).
+addresses (array, required): Array of address objects.
+addressLine1 (string, required): Address line 1.
+addressLine2 (string, optional): Address line 2.
+pincode (string, required): Pincode of the address (min 4 digits, max 6 digits).
+city (string, required): City of the address.
+state (string, required): State of the address.
+type (string, required): Type of the address (Home or Office).
+
+Example Request: POST http://localhost:5000/user/signup Content-Type: application/json
+
+{
+"firstName": "John",
+"lastName": "Doe",
+"email": "johndoe@example.com",
+"mobileNumber": "1234567890",
+"birthdate": "1990-01-01",
+"addresses": [
+{
+"addressLine1": "123 Street",
+"addressLine2": "Apt 4",
+"pincode": "12345",
+"city": "City",
+"state": "State",
+"type": "Home"
+}
+]
+}
+
+Example Response:
+{
+"message": "User created successfully",
+"user": {
+"\_id": "60a0c7a7f76dc41940a60f56",
+"firstName": "John",
+"lastName": "Doe",
+"email": "john.doe@example.com",
+"mobileNumber": "1234567890",
+"birthdate": "1990-01-01T00:00:00.000Z",
+"addresses": [
+{
+"_id": "60a0c7a7f76dc41940a60f57",
+"addressLine1": "123 Street",
+"addressLine2": "Apt 4",
+"pincode": "12345",
+"city": "City",
+"state": "State",
+"type": "Home"
+}
+],
+"createdAt": "2021-05-16T10:15:27.363Z",
+"updatedAt": "2021-05-16T10:15:27.363Z",
+"\_\_v": 0
+}
+}
+
+**\*\***\*\*************\************* 2.SOLUTION TO THE SECOND TASK **\*\*\*\***\*************\*\*************
+USER SEARCH
+Endpoint: get request to => http://localhost:5000/user/search
+Description: Searches for users based on specified filters. \* Query Parameters:
+searchString value: "John"
+in searchString comes the following parameters:
+firstName,lastName,email
+
+            minAge value: 25
+            maxAge value: undefined (not provided in the query)
+            city value: "Mumbai"
+
+            http://localhost:5000/user/search?searchString=Aakib ("Aakib",which is firstName)
+            http://localhost:5000/user/search?searchString=khan ("khan",which is lastName)
+            http://localhost:5000/user/search?searchString=aakibk662@gmail.com (which is email)
+
+
+               ** query based on city**
+
+            http://localhost:5000/user/search?city=amravati
+
+               ** query based on minAge,maxAge**
+
+            http://localhost:5000/user/search?minAge=31&maxAge=60
+
+**\*\***\*\*************\************* 3.SOLUTION TO THE THIRD TASK **\*\*\*\***\*************\*\************* 3. REST API endpoint to update the user information (including address)
+
+    UPDATE USER INFORMATION
+    To update an existing user, you can make a PUT request to the  http://localhost:5000/user/update/:id endpoint, where :id represents the ID of the user you want to update. The request should include the updated user information in the request body.
+
+
+    Example Request: PUT  http://localhost:5000/user/update/646de9706a22620f91ab6874
+
+Request Body:
+    {
+
+"firstName": "John",
+"lastName": "Doe",
+"email": "john.doe@example.com",
+"mobileNumber": "1234567890",
+"birthdate": "1990-01-01",
+"addresses": [
+{
+"addressLine1": "123 Main St",
+"addressLine2": "Apt 4B",
+"pincode": "12345",
+"city": "Mumbai",
+"state": "Maharashtra",
+"type": "Home"
+}
+]
+}
+
+Response:
+If the user is successfully updated, the API will respond with a 200 status code and the following JSON object:
+
+            {
+  "message": "User John Doe Updated Successfully",
+  "user": {
+    "_id": "12345",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "mobileNumber": "1234567890",
+    "birthdate": "1990-01-01",
+    "addresses": [
+      {
+        "addressLine1": "123 Main St",
+        "addressLine2": "Apt 4B",
+        "pincode": "12345",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "type": "Home"
+      }
+    ]
+  }
+}
+
+*************************************  END  *******************************************
+
+
+Dear ,
+I wanted to inform you that I have successfully submitted the backend assignment . I have put in my best efforts to meet the requirements and deliver a high-quality solution.
+
+I would like to express my gratitude for considering my application and giving me the opportunity to showcase my skills and knowledge through this assignment. Working on this project has been an exciting and enriching experience.
+
+I am eagerly awaiting your feedback and the outcome of the assignment. Being selected to be a part of your talented team would be a great honor for me. If there are any further discussions or interviews required, I am available and ready to participate.
+
+Thank you once again for considering my application. I truly appreciate your time and attention. Please feel free to reach out to me if you require any additional information or clarification. I eagerly await your response.
+
+Best regards,
+Aakib Khan
